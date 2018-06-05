@@ -20,16 +20,10 @@ end
 
 def check_brackets( expression)
   loop do
-    if  expression.first == "("
-      if expression.index(")") != nil
-        expression.shift
-        expression.delete_at(expression.index(")"))
-      else
-        break
-      end
-    else
-      break
-    end
+    break if  expression.first != "("
+    break if expression.index(")") == nil
+    expression.shift
+    expression.delete_at(expression.index(")"))
   end
   if expression == []
     puts "верное кол-во скобок"
