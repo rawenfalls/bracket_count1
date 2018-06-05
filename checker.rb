@@ -1,3 +1,8 @@
+def scan
+  expression = gets.chomp.strip.scan(/[()]/)
+  check_brackets(expression)
+end
+
 def check_answer
   quit = false
   until quit
@@ -13,10 +18,22 @@ def check_answer
   end
 end
 
-def check_brackets(brackets)
-  if brackets.match "(\\[.+\\})" || "|(\\(\\))" || "|({})"
-    puts "true"
+def check_brackets( expression)
+  loop do
+    if  expression.first == "("
+      if expression.index(")") != nil
+        expression.shift
+        expression.delete_at(expression.index(")"))
+      else
+        break
+      end
+    else
+      break
+    end
+  end
+  if expression == []
+    puts "верное кол-во скобок"
   else
-    puts "fals"
+    puts "неверное кол-во скобок"
   end
-  end
+end
